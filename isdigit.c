@@ -21,7 +21,7 @@ int is_digit(void)
         }
         for (; value[i]; i++)
         {
-            if (value[i] > '0' && value[i] < '9')
+            if (value[i] >= '0' && value[i] <= '9')
             {
                 c++;
             }
