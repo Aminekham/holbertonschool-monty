@@ -30,3 +30,15 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 		node = node->next;
 	}
 }
+/**/
+void free_stack(stack_t *stack)
+{
+    stack_t *a;
+
+    while (stack)
+    {
+        a = stack;
+        stack = stack->next;
+        free(a);
+    }
+}

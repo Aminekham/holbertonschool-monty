@@ -13,11 +13,15 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
 
     if (strcmp(line, "") == 0)
     {
+        free(line);
+        free_stack(*stack);
+        free(stack);
         return;
     }
     opcode = strtok(line, " \n\t\r");
     if (opcode == NULL)
     {
+        free(opcode);
         return;
     }
     value = strtok(NULL, " \n\t\r");
@@ -25,6 +29,8 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
     if (((value == NULL) || (i == 0))&& strcmp(opcode, "push") == 0)
     {
         fprintf(stderr, "L%d: usage: push integer\n", line_number);
+        free(line);
+        free_stack(*stack);
         exit(EXIT_FAILURE);
     }
     while (table[k].opcode)
@@ -38,6 +44,8 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
         if (table[k].opcode == NULL)
         {
             fprintf(stderr, "L%d: unknown instruction pushe\n", line_number);
+            free(line);
+            free_stack(*stack);
             exit(EXIT_FAILURE);
         }
     }
