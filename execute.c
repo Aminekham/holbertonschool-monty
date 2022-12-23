@@ -16,6 +16,10 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
         return;
     }
     opcode = strtok(line, " \n\t\r");
+    if (opcode == NULL)
+    {
+        return;
+    }
     value = strtok(NULL, " \n\t\r");
     if (value == NULL && strcmp(opcode, "push") == 0)
     {
