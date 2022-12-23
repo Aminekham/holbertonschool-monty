@@ -10,6 +10,11 @@ int main(int argc, char *argv[])
 	char *line = NULL;
 	unsigned int line_number = 0;
 
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 	filename = argv[1];
 	fp = fopen(filename, "r");
 	if ((fp == NULL))
