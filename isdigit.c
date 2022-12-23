@@ -19,7 +19,7 @@ int is_digit(void)
             i++;
             c++;
         }
-        for (i; value[i]; i++)
+        for (; value[i]; i++)
         {
             if (value[i] > '0' && value[i] < '9')
             {
