@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * main - main function
+ * @argc:  number of arguments
+ * @argv:  array of the elements
+ * Return: 0
+ */
+
 int main(int argc, char *argv[])
 {
 	size_t i = 0;
@@ -17,7 +24,7 @@ int main(int argc, char *argv[])
 	}
 	filename = argv[1];
 	fp = fopen(filename, "r");
-	if ((fp == NULL))
+	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
@@ -34,7 +41,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	free(line);
-    free_stack(stack);
+	free_stack(stack);
 	fclose(fp);
 
 	return (0);
