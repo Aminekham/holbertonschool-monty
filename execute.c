@@ -17,7 +17,7 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
     }
     opcode = strtok(line, " \n\t\r");
     value = strtok(NULL, " \n\t\r");
-    if (value == NULL )
+    if (value == NULL && strcmp(opcode, "push") == 0)
     {
         fprintf(stderr, "L%d: usage: push integer\n", line_number);
         exit(EXIT_FAILURE);
