@@ -12,7 +12,7 @@ void execute(char *line, stack_t **stack, unsigned int line_number)
 	int k = 0, i;
 	char *opcode;
 	instruction_t table[] = {
-		{"pall", pall}, {"push", push}, {"pint", pint}, {"pop", pop}, {NULL, NULL}};
+		{"pall", pall}, {"push", push}, {"pint", pint}, {"pop", pop}, {"add", add}, {"swap", swap}, {"nop", nop}, {NULL, NULL}};
 
 	if (strcmp(line, "") == 0)
 	{
