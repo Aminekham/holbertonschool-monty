@@ -2,24 +2,19 @@
 
 int main(int argc, char *argv[])
 {
-	size_t k = 0;
+	size_t i = 0;
+	ssize_t read = 1;
 	stack_t *stack = NULL;
 	char *filename;
 	FILE *fp;
-	char *line = malloc(sizeof(char) * 1024), *opcode;
-	int line_number = 0;
-
-	instruction_t table[] = {
-		{"pall", pall},
-		{"push", push},
-		{NULL, NULL}};
+	char *line = NULL;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
 	filename = argv[1];
 	fp = fopen(filename, "r");
 	if ((fp == NULL))
@@ -28,39 +23,17 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	while ((fgets(line, 100, fp) != NULL) && line_number++)
+	while (read > 0)
 	{
-		if (strlen(line) == 1)
-		{
-			line_number++;
-			continue;
-		}
-		else
-		{
-			opcode = strtok(line, " \n\t\r");
-			value = strtok(NULL, " \n\t\r");
-
-			while (table[k].opcode && opcode)
-			{
-				if (strcmp(opcode, table[k].opcode) == 0)
-				{
-					table[k].f(&stack, line_number);
-					return (0);
-				}
-
-				k++;
-
-				if (table[k].opcode == NULL)
-				{
-					fprintf(stderr, "L%d: unknown instruction pushe***\n", line_number);
-					exit(EXIT_FAILURE);
-				}
-			}
-			k = 0;
-			line = NULL;
-		}
+		read = getline(&line, &i, fp);
 		line_number++;
+
+		if (read > 0)
+		{
+			execute(line, &stack, line_number);
+		}
 	}
+	free(line);
 	fclose(fp);
 
 	return (0);
