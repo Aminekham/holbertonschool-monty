@@ -4,7 +4,7 @@
 
 void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int line_number)
 {
-    int k = 0;
+    int k = 0, i;
     char *opcode = malloc(1024 * sizeof(char));
     instruction_t table[] = {
         {"pall", pall},
@@ -21,7 +21,8 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
         return;
     }
     value = strtok(NULL, " \n\t\r");
-    if (value == NULL && strcmp(opcode, "push") == 0)
+    i = is_digit(value);
+    if (((value == NULL) || i == 0) && strcmp(opcode, "push") == 0)
     {
         fprintf(stderr, "L%d: usage: push integer\n", line_number);
         exit(EXIT_FAILURE);
