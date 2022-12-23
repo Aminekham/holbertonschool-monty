@@ -36,7 +36,7 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
         k++;
         if (table[k].opcode == NULL)
         {
-            fprintf(stderr, "L%d: unknown instruction push\n", line_number);
+            fprintf(stderr, "L%d: unknown instruction pushe\n", line_number);
             exit(EXIT_FAILURE);
         }
     }
