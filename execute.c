@@ -11,8 +11,17 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
         {"push", push},
         {NULL, NULL}};
 
+    if (strcmp(line, "") == 0)
+    {
+        return;
+    }
     opcode = strtok(line, " \n\t\r");
     value = strtok(NULL, " \n\t\r");
+    if (value == NULL )
+    {
+        fprintf(stderr, "L%d: usage: push integer\n", line_number);
+        exit(EXIT_FAILURE);
+    }
     while (table[k].opcode)
     {
         if (strcmp(opcode, table[k].opcode) == 0)
@@ -23,7 +32,7 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
         k++;
         if (table[k].opcode == NULL)
         {
-            fprintf(stderr, "L%d: unknown instruction pushe***\n", line_number);
+            fprintf(stderr, "L%d: unknown instruction push\n", line_number);
             exit(EXIT_FAILURE);
         }
     }
