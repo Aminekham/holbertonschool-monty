@@ -2,15 +2,16 @@
 
 int main(int argc, char *argv[])
 {
-	size_t i = 0, k;
+	size_t k = 0;
 	stack_t *stack = NULL;
 	char *filename;
 	FILE *fp;
-	char *line, *opcode;
-	int line_number = 1;
+	char *line = malloc(sizeof(char) * 1024), *opcode;
+	int line_number = 0;
+
 	instruction_t table[] = {
-		{"push", push},
 		{"pall", pall},
+		{"push", push},
 		{NULL, NULL}};
 
 	if (argc != 2)
@@ -27,27 +28,38 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	while ((getline(&line, &i, fp) != -1))
+	while ((fgets(line, 100, fp) != NULL) && line_number++)
 	{
-		line_number++;
-
-		opcode = strtok(line, " \n\t\r");
-		value = strtok(NULL, " \n\t\r");
-
-		while (table[k].opcode)
+		if (strlen(line) == 1)
 		{
-			if (strcmp(opcode, table[k].opcode) == 0)
+			line_number++;
+			continue;
+		}
+		else
+		{
+			opcode = strtok(line, " \n\t\r");
+			value = strtok(NULL, " \n\t\r");
+
+			while (table[k].opcode && opcode)
 			{
-				table[k].f(&stack, line_number);
-			}
-			k++;
-		}
+				if (strcmp(opcode, table[k].opcode) == 0)
+				{
+					table[k].f(&stack, line_number);
+					return (0);
+				}
 
-		if (!table[k].opcode)
-		{
-			fprintf(stderr, "L%d: unknown instruction pushe***\n", line_number);
-			exit(EXIT_FAILURE);
+				k++;
+
+				if (table[k].opcode == NULL)
+				{
+					fprintf(stderr, "L%d: unknown instruction pushe***\n", line_number);
+					exit(EXIT_FAILURE);
+				}
+			}
+			k = 0;
+			line = NULL;
 		}
+		line_number++;
 	}
 	fclose(fp);
 

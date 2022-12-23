@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
-char *value;
+extern char *value;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
