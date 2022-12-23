@@ -1,37 +1,35 @@
 #include "monty.h"
-#include <ctype.h>
 /**
- * 
- * 
-*/
-int is_digit(char *value)
+ *
+ *
+ */
+int is_digit(void)
 {
-    int l, c = 0 , r;
+    int l, c = 0, i = 0;
 
-    l = strlen(value);
-    if (*value == '-')
+    if (value)
     {
-        for (int i = 0; i < l - 1; i++)
+        l = strlen(value);
+        if (l == 1)
         {
-            value[i] = value[i + 1];
+            return (1);
         }
-    }
-    for (int i = 0; i < l; i++)
-    {
-        r = isdigit(*value);
-        if (r == 0)
+        if (value[0] == '-')
         {
-            c = c;
-        }
-        else
-        {
+            i++;
             c++;
         }
-        value++;
+        for (i; value[i]; i++)
+        {
+            if (value[i] > '0' && value[i] < '9')
+            {
+                c++;
+            }
+        }
+        if (c == l)
+        {
+            return (1);
+        }
     }
-    if (c == l)
-    {
-        return(1);
-    }
-    return(0);
+    return (0);
 }

@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int main(int argc, char *argv[])
+int main( __attribute__((unused)) int argc, __attribute__((unused)) char *argv[])
 {
 	size_t i = 0;
 	ssize_t read = 1;
@@ -10,12 +10,7 @@ int main(int argc, char *argv[])
 	char *line = NULL;
 	unsigned int line_number = 0;
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	filename = argv[1];
+	filename = "bytecodes/00.m";
 	fp = fopen(filename, "r");
 	if ((fp == NULL))
 	{

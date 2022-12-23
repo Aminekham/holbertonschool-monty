@@ -22,7 +22,7 @@ void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int l
     }
     value = strtok(NULL, " \n\t\r");
     i = is_digit(value);
-    if (((value == NULL) || i == 0) && strcmp(opcode, "push") == 0)
+    if (((value == NULL) || (i == 0))&& strcmp(opcode, "push") == 0)
     {
         fprintf(stderr, "L%d: usage: push integer\n", line_number);
         exit(EXIT_FAILURE);
