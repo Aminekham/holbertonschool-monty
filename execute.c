@@ -5,7 +5,7 @@
 void execute(__attribute__((unused)) char *line, stack_t **stack, unsigned int line_number)
 {
     int k = 0, i;
-    char *opcode = malloc(1024 * sizeof(char));
+    char *opcode;
     instruction_t table[] = {
         {"pall", pall},
         {"push", push},
