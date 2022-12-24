@@ -22,6 +22,11 @@ void get_opcode(char *line, char *opcode,
 		{"nop", nop},
 		{NULL, NULL}};
 
+	if (strcmp(opcode, "swap") == 0 && line_number == 1)
+	{
+		error_boss(opcode, line_number);
+		exit(EXIT_FAILURE);
+	}
 	while (table[k].opcode)
 	{
 		if (strcmp(opcode, table[k].opcode) == 0)
