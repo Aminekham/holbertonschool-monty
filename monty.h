@@ -49,5 +49,13 @@ void pop(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void error_boss(char *opcode, unsigned int line_number);
+void pint_error(char *opcode, unsigned int line_number);
+void pop_error(char *opcode, unsigned int line_number);
+void swap_error(char *opcode, unsigned int line_number);
+void add_error(char *opcode, unsigned int line_number);
+void push_not_found(char *opcode, unsigned int line_number);
+void get_opcode(char *line, char *opcode,
+				stack_t **stack, unsigned int line_number);
 
 #endif

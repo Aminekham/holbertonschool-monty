@@ -5,7 +5,6 @@
  * @stack:       stack
  * @line_number: Line Number
  */
-
 char *value;
 void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
@@ -37,6 +36,39 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 		printf("%d\n", node->n);
 		node = node->next;
 	}
+}
+
+/**
+ * pint - function pint
+ * @stack: stack
+ * @line_number: line_number
+ */
+
+void pint(stack_t **stack, unsigned int line_number)
+{
+	stack_t *node = *stack;
+
+	if (node == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
+	while (node != NULL)
+	{
+		printf("%d\n", node->n);
+		node = node->prev;
+	}
+}
+
+/**
+ * push_not_found - function that print error msg if push not found
+ * @opcode: the opcode
+ * @line_number: line number
+ */
+void push_not_found(char *opcode, unsigned int line_number)
+{
+	fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
 }
 
 /**
