@@ -21,11 +21,6 @@ void execute(char *line, stack_t **stack, unsigned int line_number)
 	opcode = strtok(line, " \n\t\r");
 	if (opcode == NULL)
 		return;
-	if (strcmp(opcode, "push") != 0 && line_number == 1)
-	{
-		error_boss(opcode, line_number);
-		exit(EXIT_FAILURE);
-	}
 	value = strtok(NULL, " \n\t\r");
 	i = is_digit();
 	if (((value == NULL) || (i == 0)) && strcmp(opcode, "push") == 0)
