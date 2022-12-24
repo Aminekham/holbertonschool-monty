@@ -7,31 +7,33 @@
  */
 void error_boss(char *opcode, unsigned int line_number)
 {
-	if (strcmp(opcode, "push") != 0)
+	if (strcmp(opcode, "push") != 0 && line_number == 1)
 	{
 		push_not_found(opcode, line_number);
 		return;
 	}
-	if (strcmp(opcode, "pint") == 0)
+	else if (strcmp(opcode, "pint") == 0)
 	{
 		pint_error(opcode, line_number);
 		return;
 	}
-	if (strcmp(opcode, "pop") == 0)
+	else if (strcmp(opcode, "pop") == 0)
 	{
 		pop_error(opcode, line_number);
 		return;
 	}
-	if (strcmp(opcode, "swap") == 0)
+	else if (strcmp(opcode, "swap") == 0)
 	{
 		swap_error(opcode, line_number);
 		return;
 	}
-	if (strcmp(opcode, "add") == 0)
+	else if (strcmp(opcode, "add") == 0)
 	{
 		add_error(opcode, line_number);
 		return;
 	}
+	else
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 }
 
 /**
