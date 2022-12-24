@@ -1,11 +1,11 @@
 #include "monty.h"
+char *value;
 
 /**
  * push - function that push to the stack
  * @stack:       stack
  * @line_number: Line Number
  */
-char *value;
 void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *node = malloc(sizeof(stack_t));
