@@ -18,11 +18,14 @@ void execute(char *line, stack_t **stack, unsigned int line_number)
 		free(stack);
 		return;
 	}
+
 	opcode = strtok(line, " \n\t\r");
 	if (opcode == NULL)
 		return;
+
 	value = strtok(NULL, " \n\t\r");
 	i = is_digit();
+
 	if (((value == NULL) || (i == 0)) && strcmp(opcode, "push") == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
@@ -30,5 +33,6 @@ void execute(char *line, stack_t **stack, unsigned int line_number)
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
+
 	get_opcode(line, opcode, stack, line_number);
 }
