@@ -42,7 +42,7 @@ void execute(char *line, stack_t **stack, unsigned int line_number)
 		k++;
 		if (table[k].opcode == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction pushe\n", line_number);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 			free(line);
 			free_stack(*stack);
 			exit(EXIT_FAILURE);
