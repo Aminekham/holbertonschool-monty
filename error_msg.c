@@ -7,16 +7,16 @@
  */
 void error_boss(char *opcode, unsigned int line_number)
 {
-    if (strcmp(opcode, "push") != 0 && line_number == 1)
-    {
-        push_not_found(opcode, line_number);
-        return;
-    }
-    else
-    {
-        pint_error(opcode, line_number);
-        return;
-    }
+	if (strcmp(opcode, "push") != 0 && line_number == 1)
+	{
+		push_not_found(opcode, line_number);
+		return;
+	}
+	else
+	{
+		pint_error(opcode, line_number);
+		return;
+	}
 }
 
 /**
@@ -26,5 +26,5 @@ void error_boss(char *opcode, unsigned int line_number)
  */
 void pint_error(char *opcode, unsigned int line_number)
 {
-    fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 }

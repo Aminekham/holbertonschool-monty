@@ -8,17 +8,17 @@ char *value;
  */
 void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
-    stack_t *node = malloc(sizeof(stack_t));
-    int x;
+	stack_t *node = malloc(sizeof(stack_t));
+	int x;
 
-    x = atoi(value);
-    node->n = x;
-    node->prev = NULL;
-    node->next = *stack;
+	x = atoi(value);
+	node->n = x;
+	node->prev = NULL;
+	node->next = *stack;
 
-    if (*stack != NULL)
-        (*stack)->prev = node;
-    *stack = node;
+	if (*stack != NULL)
+		(*stack)->prev = node;
+	*stack = node;
 }
 
 /**
@@ -29,13 +29,13 @@ void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  */
 void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
-    stack_t *node = *stack;
+	stack_t *node = *stack;
 
-    while (node != NULL)
-    {
-        printf("%d\n", node->n);
-        node = node->next;
-    }
+	while (node != NULL)
+	{
+		printf("%d\n", node->n);
+		node = node->next;
+	}
 }
 
 /**
@@ -43,22 +43,21 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  * @stack: stack
  * @line_number: line_number
  */
-
 void pint(stack_t **stack, unsigned int line_number)
 {
-    stack_t *node = *stack;
+	stack_t *node = *stack;
 
-    if (node == NULL)
-    {
-        fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-        free_stack(*stack);
-        exit(EXIT_FAILURE);
-    }
-    while (node != NULL)
-    {
-        printf("%d\n", node->n);
-        node = node->prev;
-    }
+	if (node == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
+	while (node != NULL)
+	{
+		printf("%d\n", node->n);
+		node = node->prev;
+	}
 }
 
 /**
@@ -68,7 +67,7 @@ void pint(stack_t **stack, unsigned int line_number)
  */
 void push_not_found(char *opcode, unsigned int line_number)
 {
-    fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
+	fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
 }
 
 /**
@@ -77,12 +76,12 @@ void push_not_found(char *opcode, unsigned int line_number)
  */
 void free_stack(stack_t *stack)
 {
-    stack_t *a;
+	stack_t *a;
 
-    while (stack)
-    {
-        a = stack;
-        stack = stack->next;
-        free(a);
-    }
+	while (stack)
+	{
+		a = stack;
+		stack = stack->next;
+		free(a);
+	}
 }
